@@ -52,17 +52,20 @@ namespace $pluginnamespace$ {
             // Hook into image saving for adding FITS keywords or image file patterns
             this.imageSaveMediator = imageSaveMediator;
 
-            // Register a new image file pattern for the Options > Imaging > File Patterns area
-            options.AddImagePattern(exampleImagePattern);
-
             // Run these handlers when an image is being saved
             this.imageSaveMediator.BeforeImageSaved += ImageSaveMediator_BeforeImageSaved;
             this.imageSaveMediator.BeforeFinalizeImageSaved += ImageSaveMediator_BeforeFinalizeImageSaved;
+
+            // Register a new image file pattern for the Options > Imaging > File Patterns area
+            options.AddImagePattern(exampleImagePattern);
         }
 
         public override Task Teardown() {
             // Make sure to unregister an event when the object is no longer in use. Otherwise garbage collection will be prevented.
             profileService.ProfileChanged -= ProfileService_ProfileChanged;
+            imageSaveMediator.BeforeImageSaved -= ImageSaveMediator_BeforeImageSaved;
+            imageSaveMediator.BeforeFinalizeImageSaved -= ImageSaveMediator_BeforeFinalizeImageSaved;
+
             return base.Teardown();
         }
 
