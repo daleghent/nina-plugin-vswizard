@@ -260,9 +260,17 @@ namespace NINAPluginTemplateWizard {
             this.namespaceTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.namespaceTextBox_Validating);
             this.namespaceTextBox.Validated += new System.EventHandler(this.namespaceTextBox_Validated);
             // 
+            // wizardToolTip
+            //
+            this.wizardToolTip.AutoPopDelay = 20000;
+            this.wizardToolTip.InitialDelay = 500;
+            this.wizardToolTip.ReshowDelay = 100;
+            //
             // WizardForm
             // 
             this.AcceptButton = this.createButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 392);
             this.Controls.Add(this.namespaceLabel);
             this.Controls.Add(this.namespaceTextBox);
